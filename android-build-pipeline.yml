@@ -1,0 +1,44 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+parameters:
+  preBuild: []
+  postBuild: []
+
+jobs:
+- job:
+  displayName: 'Android Build Project'
+  steps:
+    - ${{ parameters.preBuild }} # Here we start the prebuild steps
+
+    - task: Bash@3
+      displayName: 'Restore packages'
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo Restore all packages needed
+
+    - task: Bash@3
+      displayName: 'Install certificates'
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo Install all the certificates needed
+
+    - task: Bash@3
+      displayName: 'Build'
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo This script represents the build tasks
+
+    - task: Bash@3
+      displayName: 'Publish'
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo This script represents the publish tasks
+
+    - ${{ parameters.postBuild }} # Here we start the postbuild steps
