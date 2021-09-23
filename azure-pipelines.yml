@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 variables:
-  - name: msgText
+  - name: msgTextNew
     value: asd123asd
 
 trigger:
@@ -14,7 +14,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, $(msgText)!
+- script: echo Hello, $(msgTextNew)!
   displayName: 'Run a one-line script'
 
 - script: |
