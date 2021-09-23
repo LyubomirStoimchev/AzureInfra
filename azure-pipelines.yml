@@ -22,5 +22,5 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- checkout: git@github.com:LyubomirStoimchev/my-app
+- checkout: github://LyubomirStoimchev/my-app
   displayName: "Checkout custom repo"
