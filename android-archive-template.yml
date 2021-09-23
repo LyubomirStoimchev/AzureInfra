@@ -1,0 +1,58 @@
+trigger:
+- main
+
+# resources:
+#   repositories:
+#   - repository: templates
+#     type: github
+#     name: username/repo # Change with the username and git the repository where your common templates are
+#     ref: refs/tags/v1.0.0 # Do not forget to specify the correct tag for your common templates repository
+#     endpoint: EndPointConnection # Update with the end point connection
+parameters:
+  preBuild: []
+  postBuild: []
+
+jobs:
+- template: android-build-template.yml
+  parameters:
+    preBuild:
+      - task: Bash@3
+        displayName: 'PRE_BUILD_FROM_ARCHIVE_1'
+        inputs:
+          targetType: 'inline'
+          script: |
+            echo 1
+      - task: Bash@3
+        displayName: 'PRE_BUILD_FROM_ARCHIVE_2'
+        inputs:
+          targetType: 'inline'
+          script: |
+            echo 2
+    postBuild:
+      - task: Bash@3
+        displayName: 'POST_BUILD_FROM_ARCHIVE_1'
+        inputs:
+          targetType: 'inline'
+          script: |
+            echo 3
+
+- job:
+  displayName: 'Android Archive Project'
+  steps:
+    - ${{ parameters.preBuild }} # Here we start the prebuild steps
+
+    - task: Bash@3
+      displayName: 'ARCHIVE 1'
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo 1
+
+    - task: Bash@3
+      displayName: 'ARCHIVE 2'
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo 2
+
+    - ${{ parameters.postBuild }} # Here we start the postbuild steps

@@ -15,25 +15,25 @@ pool:
 stages:
   - stage: Build
     jobs:
-    - template: android-build-pipeline.yml
+    - template: android-archive-template.yml
       parameters:
         preBuild:
           - task: Bash@3
-            displayName: 'PRE_BUILD: Add custom configuration'
+            displayName: 'PRE_BUILD_FROM_UPLOAD_1'
             inputs:
               targetType: 'inline'
               script: |
-                echo Add a specific configuration
+                echo 1
           - task: Bash@3
-            displayName: 'PRE_BUILD: Define application version'
+            displayName: 'PRE_BUILD_FROM_UPLOAD_2'
             inputs:
               targetType: 'inline'
               script: |
-                echo Define the application version automatically
+                echo 2
         postBuild:
           - task: Bash@3
-            displayName: 'POST_BUILD_Push git tag'
+            displayName: 'PRE_BUILD_FROM_UPLOAD_1'
             inputs:
               targetType: 'inline'
               script: |
-                echo Push a tag to the Git repository      
+                echo 3

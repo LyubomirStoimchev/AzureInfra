@@ -14,31 +14,31 @@ jobs:
     - ${{ parameters.preBuild }} # Here we start the prebuild steps
 
     - task: Bash@3
-      displayName: 'Restore packages'
+      displayName: 'BUILD_BASE_1'
       inputs:
         targetType: 'inline'
         script: |
-          echo Restore all packages needed
+          echo 1
 
     - task: Bash@3
-      displayName: 'Install certificates'
+      displayName: 'BUILD_BASE_4'
       inputs:
         targetType: 'inline'
         script: |
-          echo Install all the certificates needed
+          echo 2
 
     - task: Bash@3
-      displayName: 'Build'
+      displayName: 'BUILD_BASE_3'
       inputs:
         targetType: 'inline'
         script: |
-          echo This script represents the build tasks
+          echo 3
 
     - task: Bash@3
-      displayName: 'Publish'
+      displayName: 'BUILD_BASE_4'
       inputs:
         targetType: 'inline'
         script: |
-          echo This script represents the publish tasks
+          echo 4
 
     - ${{ parameters.postBuild }} # Here we start the postbuild steps
