@@ -1,6 +1,8 @@
 trigger:
 - main
 
+pool:
+  vmImage: ubuntu-latest
 # resources:
 #   repositories:
 #   - repository: templates
@@ -8,9 +10,6 @@ trigger:
 #     name: username/repo # Change with the username and git the repository where your common templates are
 #     ref: refs/tags/v1.0.0 # Do not forget to specify the correct tag for your common templates repository
 #     endpoint: EndPointConnection # Update with the end point connection
-
-pool:
-  vmImage: 'ubuntu-latest'
 
 stages:
   - stage: Build
