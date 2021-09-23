@@ -15,7 +15,7 @@ pool:
 stages:
   - stage: Build
     jobs:
-    - template: android-build-pipeline.yml@templates
+    - template: android-build-pipeline.yml
       parameters:
         preBuild:
           - task: Bash@3
