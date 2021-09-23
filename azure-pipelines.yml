@@ -7,6 +7,13 @@ variables:
   - name: msgTextNew
     value: asd123asd
 
+resources:
+  repositories:
+  - repository: ExtRepo # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: LyubomirStoimchev
+    name: LyubomirStoimchev/my-app
+    
 trigger:
 - main
 
@@ -22,5 +29,4 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- checkout: github://LyubomirStoimchev/my-app
-  displayName: "Checkout custom repo"
+- checkout: ExtRepo
