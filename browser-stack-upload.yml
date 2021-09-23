@@ -32,7 +32,7 @@ stages:
                 echo 2
         postBuild:
           - task: Bash@3
-            displayName: 'PRE_BUILD_FROM_UPLOAD_1'
+            displayName: 'POST_BUILD_FROM_UPLOAD_1'
             inputs:
               targetType: 'inline'
               script: |
