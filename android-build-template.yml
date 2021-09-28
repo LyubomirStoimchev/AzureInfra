@@ -25,14 +25,14 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-          echo 2
+          pwd
 
     - task: Bash@3
       displayName: 'BUILD_BASE_3'
       inputs:
         targetType: 'inline'
         script: |
-          echo 3
+          echo "test" >> test.txt
 
     - task: Bash@3
       displayName: 'BUILD_BASE_4'
