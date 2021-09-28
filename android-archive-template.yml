@@ -33,7 +33,7 @@ jobs:
           script: |
             echo 3
 
-- job:
+- job: AndroidArchiveProject
   displayName: 'Android Archive Project'
   dependsOn: AndroidBuildProject
   steps:
