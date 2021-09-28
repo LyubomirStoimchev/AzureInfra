@@ -36,3 +36,31 @@ stages:
               targetType: 'inline'
               script: |
                 echo 3
+
+  - stage : Upload
+    dependsOn: Build
+    jobs:
+    - job:
+      displayName: 'TestUpload'
+      dependsOn: AndroidArchiveProject
+      steps:
+        - task: Bash@3
+          displayName: 'Upload 1'
+          inputs:
+            targetType: 'inline'
+            script: |
+              pwd
+              mkdir downloaded2
+
+        - task: DownloadPipelineArtifact@2
+          inputs:
+            artifact: drop
+            path: $(System.DefaultWorkingDirectory)/downloaded2 # Required 
+
+        - task: Bash@3
+          displayName: 'Upload 2'
+          inputs:
+            targetType: 'inline'
+            script: |
+              ls -la -R
+              cat $(System.DefaultWorkingDirectory)/downloaded2/test.txt
