@@ -9,7 +9,7 @@ parameters:
 
 jobs:
 - job:
-  displayName: 'Android Build Project'
+  displayName: 'AndroidBuildProject'
   steps:
     - ${{ parameters.preBuild }} # Here we start the prebuild steps
 
