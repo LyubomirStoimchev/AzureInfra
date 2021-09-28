@@ -35,7 +35,7 @@ jobs:
 
 - job:
   displayName: 'Android Archive Project'
-  dependsOn: 'Android Build Project'
+  dependsOn: AndroidBuildProject
   steps:
     - ${{ parameters.preBuild }} # Here we start the prebuild steps
 
