@@ -40,11 +40,11 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-          ls -la
+          ls -la -R
 
     - task: PublishPipelineArtifact@1
       inputs:
-        targetPath: $(System.DefaultWorkingDirectory)/tmp' # Required 
+        targetPath: '$(System.DefaultWorkingDirectory)/tmp' # Required 
         artifactName: 'drop' # Optional
         artifactType: 'pipeline' # Required. Options: pipeline, filepath. Default value: pipeline
         #fileSharePath: '\server\folderName' # Required when artifactType = filepath
