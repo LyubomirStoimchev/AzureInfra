@@ -39,7 +39,7 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-          echo 4
+          ls -la
 
     - task: PublishPipelineArtifact@1
       inputs:
