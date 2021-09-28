@@ -44,17 +44,19 @@ jobs:
         targetType: 'inline'
         script: |
           pwd
+          mkdir downloaded
 
     - task: DownloadPipelineArtifact@2
       inputs:
-        artifact: WebApp
-        path: $(System.DefaultWorkingDirectory)/test.txt' # Required 
+        artifact: drop
+        path: $(System.DefaultWorkingDirectory)/downloaded' # Required 
 
     - task: Bash@3
       displayName: 'ARCHIVE 2'
       inputs:
         targetType: 'inline'
         script: |
-          cat $(System.DefaultWorkingDirectory)/test.txt
+          ls -la -R
+          cat $(System.DefaultWorkingDirectory)/downloaded/test.txt
 
     - ${{ parameters.postBuild }} # Here we start the postbuild steps
