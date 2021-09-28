@@ -32,7 +32,8 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-          echo "test" >> $(System.DefaultWorkingDirectory)/test.txt
+          mkdir tmp
+          echo "test" >> $(System.DefaultWorkingDirectory)/tmp/test.txt
 
     - task: Bash@3
       displayName: 'BUILD_BASE_4'
@@ -43,7 +44,7 @@ jobs:
 
     - task: PublishPipelineArtifact@1
       inputs:
-        targetPath: $(System.DefaultWorkingDirectory)/test.txt' # Required 
+        targetPath: $(System.DefaultWorkingDirectory)/tmp' # Required 
         artifactName: 'drop' # Optional
         artifactType: 'pipeline' # Required. Options: pipeline, filepath. Default value: pipeline
         #fileSharePath: '\server\folderName' # Required when artifactType = filepath
