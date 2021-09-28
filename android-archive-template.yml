@@ -50,7 +50,7 @@ jobs:
     - task: DownloadPipelineArtifact@2
       inputs:
         artifact: drop
-        path: $(System.DefaultWorkingDirectory)/downloaded' # Required 
+        path: $(System.DefaultWorkingDirectory)/downloaded # Required 
 
     - task: Bash@3
       displayName: 'ARCHIVE 2'
