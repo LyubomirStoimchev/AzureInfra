@@ -42,7 +42,6 @@ stages:
     jobs:
     - job:
       displayName: 'TestUpload'
-      dependsOn: AndroidArchiveProject
       steps:
         - task: Bash@3
           displayName: 'Upload 1'
