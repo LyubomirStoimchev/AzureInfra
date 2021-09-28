@@ -8,7 +8,7 @@ parameters:
   postBuild: []
 
 jobs:
-- job:
+- job: AndroidBuildProject
   displayName: 'AndroidBuildProject'
   steps:
     - ${{ parameters.preBuild }} # Here we start the prebuild steps
