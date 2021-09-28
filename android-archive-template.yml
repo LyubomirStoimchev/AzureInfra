@@ -11,6 +11,7 @@ parameters:
 
 jobs:
 - template: android-build-template.yml
+  displayName: 'EXT_AndroidArchiveProject'
   parameters:
     preBuild:
       - task: Bash@3
@@ -35,7 +36,7 @@ jobs:
 
 - job:
   displayName: 'Android Archive Project'
-  dependsOn: AndroidBuildProject
+  dependsOn: EXT_AndroidArchiveProject
   steps:
     - ${{ parameters.preBuild }} # Here we start the prebuild steps
 
