@@ -10,13 +10,6 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-
-- script: |
-    sudo apt-add-repository ppa:qameta/allure
-    sudo apt-get update 
-    sudo apt-get install allure
-  displayName: 'Dep install'
-
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
@@ -35,17 +28,22 @@ steps:
       pwd
       ls -la -R
 
-- script: |
-    mkdir allure
-    cd allure
-    wget https://github.com/allure-framework/allure2/releases/download/2.15.0/allure-2.15.0.zip
+- task: Bash@3
+  displayName: 'add dep'
+  condition: always()
+  inputs:
+    targetType: 'inline'
+    script: |
+      mkdir allure
+      cd allure
+      wget https://github.com/allure-framework/allure2/releases/download/2.15.0/allure-2.15.0.zip
 
-    sudo apt install unzip -y
-    unzip allure-2.15.0.zip
+      sudo apt install unzip -y
+      unzip allure-2.15.0.zip
 
-    echo '##vso[task.prependpath]$(pwd)/allure-2.15.0/bin/allure'
+      echo '##vso[task.prependpath]$(pwd)/allure-2.15.0/bin/allure'
 
-    cd ..
+      cd ..
 
 - task: Bash@3
   displayName: 'gem rep'
