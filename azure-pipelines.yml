@@ -65,4 +65,4 @@ steps:
   condition: always()
   inputs:
     htmlType: 'genericHTML'
-    JmeterReportsPath: './allure-report'
+    JmeterReportsPath: './allure-report/index.html'
