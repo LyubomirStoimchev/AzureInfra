@@ -20,6 +20,7 @@ steps:
 
 - task: Bash@3
   displayName: 'test'
+  condition: always()
   inputs:
     targetType: 'inline'
     script: |
