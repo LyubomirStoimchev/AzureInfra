@@ -35,6 +35,17 @@ steps:
       pwd
       ls -la -R
 
+- script: |
+    mkdir allure
+    cd allure
+    wget https://github.com/allure-framework/allure2/releases/download/2.15.0/allure-2.15.0.zip
+
+    sudo apt install unzip -y
+    unzip allure-2.15.0.zip
+
+    echo '##vso[task.prependpath]$(pwd)/allure-2.15.0/bin/allure'
+
+    cd ..
 
 - task: Bash@3
   displayName: 'gem rep'
