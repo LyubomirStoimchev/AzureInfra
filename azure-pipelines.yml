@@ -17,3 +17,12 @@ steps:
   inputs:
     command: 'test'
     projects: '**/*.csproj'
+
+- task: Bash@3
+  displayName: 'test'
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo "Current dir:"
+      pwd
+      ls -la -R
