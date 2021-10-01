@@ -66,3 +66,9 @@ steps:
   inputs:
     htmlType: 'OtherComplexReport'
     JmeterReportsPath: './allure-report'
+
+- task: PublishHtmlReport@1
+  displayName: 'Publish HTML Report'
+  condition: always()
+  inputs:
+    reportDir: './allure-report/index.html'
