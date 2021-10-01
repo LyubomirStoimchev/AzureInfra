@@ -44,7 +44,7 @@ steps:
       cd ..
 
 - task: Bash@3
-  displayName: 'gem rep'
+  displayName: 'gen rep'
   condition: always()
   inputs:
     targetType: 'inline'
@@ -60,3 +60,9 @@ steps:
       echo "Current dir:"
       pwd
       ls -la -R
+
+- task: publishhtmlreport@1
+  condition: always()
+  inputs:
+    htmlType: 'OtherComplexReport'
+    JmeterReportsPath: './allure-report'
