@@ -71,4 +71,4 @@ steps:
   displayName: 'Publish HTML Report'
   condition: always()
   inputs:
-    reportDir: './allure-report/index.html'
+    reportDir: './allure-report'
