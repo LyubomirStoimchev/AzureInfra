@@ -61,14 +61,8 @@ steps:
       pwd
       ls -la -R
 
-# - task: publishhtmlreport@1
-#   condition: always()
-#   inputs:
-#     htmlType: 'OtherComplexReport'
-#     JmeterReportsPath: './allure-report'
-
-- task: JakubRumpca.azure-pipelines-html-report.PublishHtmlReport.PublishHtmlReport@1
-  displayName: 'Publish HTML Report'
+- task: publishhtmlreport@1
   condition: always()
   inputs:
-    reportDir: './allure-report'
+    htmlType: 'genericHTML'
+    JmeterReportsPath: './allure-report'
