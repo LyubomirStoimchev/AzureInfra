@@ -10,6 +10,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+
+- script: |
+    sudo apt-add-repository ppa:qameta/allure
+    sudo apt-get update 
+    sudo apt-get install allure
+  displayName: 'Dep install'
+
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
