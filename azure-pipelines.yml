@@ -34,3 +34,22 @@ steps:
       echo "Current dir:"
       pwd
       ls -la -R
+
+
+- task: Bash@3
+  displayName: 'gem rep'
+  condition: always()
+  inputs:
+    targetType: 'inline'
+    script: |
+      allure generate ./SomeTests/SomeTests/bin/Debug/net5.0/allure-results
+
+- task: Bash@3
+  displayName: 'print'
+  condition: always()
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo "Current dir:"
+      pwd
+      ls -la -R
