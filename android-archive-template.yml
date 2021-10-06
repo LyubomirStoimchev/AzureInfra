@@ -8,6 +8,7 @@
 parameters:
   preBuild: []
   postBuild: []
+  DependsOn: {}
 
 jobs:
 # - template: android-build-template.yml
@@ -35,6 +36,8 @@ jobs:
 
 - job: AndroidArchiveProject
   displayName: 'Android Archive Project'
+  ${{ if parameters.DependsOn }}:
+    dependsOn: '${{ parameters.DependsOn }}'
   steps:
     - ${{ parameters.preBuild }} # Here we start the prebuild steps
 

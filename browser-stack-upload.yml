@@ -7,6 +7,7 @@ parameters:
   #   default: []
   preBuild: []
   postBuild: []
+  DependsOn: {}
   # - name: AppRepository
   #   type: object
   #   default: {}
@@ -14,6 +15,8 @@ parameters:
 jobs:
 - job: UploadApplicationJob
   displayName: 'UploadApplicationJob'
+  ${{ if parameters.DependsOn }}:
+    dependsOn: '${{ parameters.DependsOn }}'
   steps:
     - ${{ parameters.preBuild }} # Here we start the prebuild steps
 

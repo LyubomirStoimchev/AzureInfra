@@ -13,6 +13,7 @@ parameters:
   preBuild: []
   postBuild: []
   AppRepository: {}
+  DependsOn: {}
   # - name: AppRepository
   #   type: object
   #   default: {}
@@ -21,6 +22,8 @@ parameters:
 jobs:
 - job: AndroidBuildProject
   displayName: 'AndroidBuildProject'
+  ${{ if parameters.DependsOn }}:
+    dependsOn: '${{ parameters.DependsOn }}'
   steps:
     - ${{ parameters.preBuild }} # Here we start the prebuild steps
 
