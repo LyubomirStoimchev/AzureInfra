@@ -14,73 +14,79 @@ pool:
 stages:
   - stage: ApplicationPreparation
     jobs:
-    - template: android-build-template.yml
-      parameters:
-        preBuild:
-          - task: Bash@3
-            displayName: 'PRE_BUILD_1'
-            inputs:
-              targetType: 'inline'
-              script: |
-                echo 1
-          - task: Bash@3
-            displayName: 'PRE_BUILD_2'
-            inputs:
-              targetType: 'inline'
-              script: |
-                echo 2
-        postBuild:
-          - task: Bash@3
-            displayName: 'POST_BUILD_1'
-            inputs:
-              targetType: 'inline'
-              script: |
-                echo 3
+    - job: GenericBuild
+      steps:
+      - template: android-build-template.yml
+        parameters:
+          preBuild:
+            - task: Bash@3
+              displayName: 'PRE_BUILD_1'
+              inputs:
+                targetType: 'inline'
+                script: |
+                  echo 1
+            - task: Bash@3
+              displayName: 'PRE_BUILD_2'
+              inputs:
+                targetType: 'inline'
+                script: |
+                  echo 2
+          postBuild:
+            - task: Bash@3
+              displayName: 'POST_BUILD_1'
+              inputs:
+                targetType: 'inline'
+                script: |
+                  echo 3
 
-    - template: android-archive-template.yml
-      parameters:
-        #DependsOn: AndroidBuildProject
-        preBuild:
-          - task: Bash@3
-            displayName: 'PRE_UPLOAD_1'
-            inputs:
-              targetType: 'inline'
-              script: |
-                echo 1
-          - task: Bash@3
-            displayName: 'PRE_UPLOAD_2'
-            inputs:
-              targetType: 'inline'
-              script: |
-                echo 2
-        postBuild:
-          - task: Bash@3
-            displayName: 'POST_UPLOAD_1'
-            inputs:
-              targetType: 'inline'
-              script: |
-                echo 3
+    - job: GenericArchive
+      steps:
+      - template: android-archive-template.yml
+        parameters:
+          #DependsOn: AndroidBuildProject
+          preBuild:
+            - task: Bash@3
+              displayName: 'PRE_UPLOAD_1'
+              inputs:
+                targetType: 'inline'
+                script: |
+                  echo 1
+            - task: Bash@3
+              displayName: 'PRE_UPLOAD_2'
+              inputs:
+                targetType: 'inline'
+                script: |
+                  echo 2
+          postBuild:
+            - task: Bash@3
+              displayName: 'POST_UPLOAD_1'
+              inputs:
+                targetType: 'inline'
+                script: |
+                  echo 3
 
-    - template: browser-stack-upload.yml
-      # dependsOn: AndroidArchiveProject
-      parameters:
-        #DependsOn: AndroidArchiveProject
-        preBuild:
-          - task: Bash@3
-            displayName: 'PRE_UPLOAD_1'
-            inputs:
-              targetType: 'inline'
-              script: |
-                echo 1
-          - task: Bash@3
-            displayName: 'PRE_UPLOAD_2'
-            inputs:
-              targetType: 'inline'
-              script: |
-                echo 2
-        postBuild:
-          - task: Bash@3
-            displayName: 'POST_UPLOAD_1'
-            inputs:
-              targetType: 'inline'
-              script: |
+    - job: GenericUpload
+      steps:
+      - template: browser-stack-upload.yml
+        # dependsOn: AndroidArchiveProject
+        parameters:
+          #DependsOn: AndroidArchiveProject
+          preBuild:
+            - task: Bash@3
+              displayName: 'PRE_UPLOAD_1'
+              inputs:
+                targetType: 'inline'
+                script: |
+                  echo 1
+            - task: Bash@3
+              displayName: 'PRE_UPLOAD_2'
+              inputs:
+                targetType: 'inline'
+                script: |
+                  echo 2
+          postBuild:
+            - task: Bash@3
+              displayName: 'POST_UPLOAD_1'
+              inputs:
+                targetType: 'inline'
+                script: |
