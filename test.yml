@@ -61,7 +61,7 @@ stages:
               script: |
                 echo 3
 
-    - template: android-archive-template.yml
+    - template: browser-stack-upload.yml
       # dependsOn: AndroidArchiveProject
       parameters:
         #DependsOn: AndroidArchiveProject
