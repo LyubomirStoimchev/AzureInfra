@@ -18,50 +18,50 @@ parameters:
   #   default: {}
     
 
-jobs:
-- job: AndroidBuildProject
-  displayName: 'AndroidBuildProject'
-  steps:
-    - ${{ parameters.preBuild }} # Here we start the prebuild steps
+# jobs:
+# - job: AndroidBuildProject
+#   displayName: 'AndroidBuildProject'
+steps:
+  - ${{ parameters.preBuild }} # Here we start the prebuild steps
 
-    - task: Bash@3
-      displayName: 'BUILD_BASE_1'
-      inputs:
-        targetType: 'inline'
-        script: |
-          echo 1
+  - task: Bash@3
+    displayName: 'BUILD_BASE_1'
+    inputs:
+      targetType: 'inline'
+      script: |
+        echo 1
 
-    # - checkout: ${{ parameters.AppRepository }}
+  # - checkout: ${{ parameters.AppRepository }}
 
-    - task: Bash@3
-      displayName: 'BUILD_BASE_4'
-      inputs:
-        targetType: 'inline'
-        script: |
-          pwd
+  - task: Bash@3
+    displayName: 'BUILD_BASE_4'
+    inputs:
+      targetType: 'inline'
+      script: |
+        pwd
 
-    - task: Bash@3
-      displayName: 'BUILD_BASE_3'
-      inputs:
-        targetType: 'inline'
-        script: |
-          mkdir tmp
-          echo "test" >> $(System.DefaultWorkingDirectory)/tmp/test.txt
+  - task: Bash@3
+    displayName: 'BUILD_BASE_3'
+    inputs:
+      targetType: 'inline'
+      script: |
+        mkdir tmp
+        echo "test" >> $(System.DefaultWorkingDirectory)/tmp/test.txt
 
-    - task: Bash@3
-      displayName: 'BUILD_BASE_4'
-      inputs:
-        targetType: 'inline'
-        script: |
-          ls -la -R
+  - task: Bash@3
+    displayName: 'BUILD_BASE_4'
+    inputs:
+      targetType: 'inline'
+      script: |
+        ls -la -R
 
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: '$(System.DefaultWorkingDirectory)/tmp' # Required 
-        artifactName: 'drop' # Optional
-        artifactType: 'pipeline' # Required. Options: pipeline, filepath. Default value: pipeline
-        #fileSharePath: '\server\folderName' # Required when artifactType = filepath
-        #parallel: false # Optional. Default value: false
-        #parallelCount: 1 # Optional. Value must be at least 1 and not greater than 128. Default value: 8
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(System.DefaultWorkingDirectory)/tmp' # Required 
+      artifactName: 'drop' # Optional
+      artifactType: 'pipeline' # Required. Options: pipeline, filepath. Default value: pipeline
+      #fileSharePath: '\server\folderName' # Required when artifactType = filepath
+      #parallel: false # Optional. Default value: false
+      #parallelCount: 1 # Optional. Value must be at least 1 and not greater than 128. Default value: 8
 
-    - ${{ parameters.postBuild }} # Here we start the postbuild steps
+  - ${{ parameters.postBuild }} # Here we start the postbuild steps

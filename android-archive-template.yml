@@ -10,7 +10,7 @@ parameters:
   postBuild: []
   DependsOn: {}
 
-jobs:
+# jobs:
 # - template: android-build-template.yml
 #   parameters:
 #     preBuild:
@@ -34,32 +34,32 @@ jobs:
 #           script: |
 #             echo 3
 
-- job: AndroidArchiveProject
-  displayName: 'Android Archive Project'
+# - job: AndroidArchiveProject
+#   displayName: 'Android Archive Project'
   # ${{ if parameters.DependsOn }}:
   #   dependsOn: '${{ parameters.DependsOn }}'
-  steps:
-    - ${{ parameters.preBuild }} # Here we start the prebuild steps
+steps:
+  - ${{ parameters.preBuild }} # Here we start the prebuild steps
 
-    - task: Bash@3
-      displayName: 'ARCHIVE 1'
-      inputs:
-        targetType: 'inline'
-        script: |
-          pwd
-          mkdir downloaded
+  - task: Bash@3
+    displayName: 'ARCHIVE 1'
+    inputs:
+      targetType: 'inline'
+      script: |
+        pwd
+        mkdir downloaded
 
-    - task: DownloadPipelineArtifact@2
-      inputs:
-        artifact: drop
-        path: $(System.DefaultWorkingDirectory)/downloaded # Required 
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      artifact: drop
+      path: $(System.DefaultWorkingDirectory)/downloaded # Required 
 
-    - task: Bash@3
-      displayName: 'ARCHIVE 2'
-      inputs:
-        targetType: 'inline'
-        script: |
-          ls -la -R
-          cat $(System.DefaultWorkingDirectory)/downloaded/test.txt
+  - task: Bash@3
+    displayName: 'ARCHIVE 2'
+    inputs:
+      targetType: 'inline'
+      script: |
+        ls -la -R
+        cat $(System.DefaultWorkingDirectory)/downloaded/test.txt
 
-    - ${{ parameters.postBuild }} # Here we start the postbuild steps
+  - ${{ parameters.postBuild }} # Here we start the postbuild steps

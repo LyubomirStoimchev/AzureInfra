@@ -12,33 +12,33 @@ parameters:
   #   type: object
   #   default: {}
 
-jobs:
-- job: UploadApplicationJob
-  displayName: 'UploadApplicationJob'
+# jobs:
+# - job: UploadApplicationJob
+#   displayName: 'UploadApplicationJob'
   # ${{ if parameters.DependsOn }}:
   #   dependsOn: '${{ parameters.DependsOn }}'
-  steps:
-    - ${{ parameters.preBuild }} # Here we start the prebuild steps
+steps:
+  - ${{ parameters.preBuild }} # Here we start the prebuild steps
 
-    - task: Bash@3
-      displayName: 'Upload 1'
-      inputs:
-        targetType: 'inline'
-        script: |
-          pwd
-          mkdir downloaded2
+  - task: Bash@3
+    displayName: 'Upload 1'
+    inputs:
+      targetType: 'inline'
+      script: |
+        pwd
+        mkdir downloaded2
 
-    - task: DownloadPipelineArtifact@2
-      inputs:
-        artifact: drop
-        path: $(System.DefaultWorkingDirectory)/downloaded2 # Required 
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      artifact: drop
+      path: $(System.DefaultWorkingDirectory)/downloaded2 # Required 
 
-    - task: Bash@3
-      displayName: 'Upload 2'
-      inputs:
-        targetType: 'inline'
-        script: |
-          ls -la -R
-          cat $(System.DefaultWorkingDirectory)/downloaded2/test.txt
+  - task: Bash@3
+    displayName: 'Upload 2'
+    inputs:
+      targetType: 'inline'
+      script: |
+        ls -la -R
+        cat $(System.DefaultWorkingDirectory)/downloaded2/test.txt
 
-    - ${{ parameters.postBuild }} # Here we start the postbuild steps
+  - ${{ parameters.postBuild }} # Here we start the postbuild steps
