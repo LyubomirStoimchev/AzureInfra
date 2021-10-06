@@ -7,7 +7,7 @@ resources:
   repositories:
   - repository: NativeAppRepo
     type: git
-    endpoint: lstoimchev
+    endpoint: GenConn
     name: draftkingsdevelopers/dk-gaming-app
     ref: develop
 
