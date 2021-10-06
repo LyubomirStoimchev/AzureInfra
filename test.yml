@@ -7,8 +7,9 @@ resources:
   repositories:
   - repository: NativeAppRepo
     type: bitbucket
-    endpoint: draftkingsdevelopers
+    endpoint: TestConnectionBB
     name: draftkingsdevelopers/dk-gaming-app
+    ref: develop
 
 stages:
   - stage: ApplicationPreparation
