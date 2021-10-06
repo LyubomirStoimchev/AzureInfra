@@ -7,7 +7,7 @@ resources:
   repositories:
   - repository: NativeAppRepo
     type: git
-    endpoint: TestConnectionBB
+    endpoint: lstoimchev
     name: draftkingsdevelopers/dk-gaming-app
     ref: develop
 
