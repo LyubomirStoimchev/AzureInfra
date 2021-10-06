@@ -39,7 +39,7 @@ stages:
 
     - template: android-archive-template.yml
       parameters:
-        DependsOn: AndroidBuildProject
+        #DependsOn: AndroidBuildProject
         preBuild:
           - task: Bash@3
             displayName: 'PRE_UPLOAD_1'
@@ -64,7 +64,7 @@ stages:
     - template: android-archive-template.yml
       # dependsOn: AndroidArchiveProject
       parameters:
-        DependsOn: AndroidArchiveProject
+        #DependsOn: AndroidArchiveProject
         preBuild:
           - task: Bash@3
             displayName: 'PRE_UPLOAD_1'
