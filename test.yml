@@ -12,7 +12,7 @@ pool:
 #     endpoint: EndPointConnection # Update with the end point connection
 
 stages:
-  - stage: BuildApplication
+  - stage: ApplicationPreparation
     jobs:
     - template: android-build-template.yml
       parameters:
@@ -36,11 +36,9 @@ stages:
               targetType: 'inline'
               script: |
                 echo 3
-                
-  - stage: ArchiveApplication
-    dependsOn: BuildApplication
-    jobs:
+
     - template: android-archive-template.yml
+      dependsOn: AndroidBuildProject
       parameters:
         preBuild:
           - task: Bash@3
@@ -63,10 +61,8 @@ stages:
               script: |
                 echo 3
 
-  - stage : UploadApplication
-    dependsOn: ArchiveApplication
-    jobs:
     - template: android-archive-template.yml
+      dependsOn: AndroidArchiveProject
       parameters:
         preBuild:
           - task: Bash@3
