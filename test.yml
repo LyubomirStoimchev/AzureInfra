@@ -5,11 +5,6 @@ pool:
   vmImage: ubuntu-latest
 resources:
   repositories:
-  - repository: draftkingsdevelopers/dk-gaming-app
-    type: github
-    name: username/repo # Change with the username and git the repository where your common templates are
-    ref: develop # Do not forget to specify the correct tag for your common templates repository
-    endpoint: EndPointConnection # Update with the end point connection
   - repository: NativeAppRepo
     type: bitbucket
     endpoint: draftkingsdevelopers
@@ -20,6 +15,7 @@ stages:
     jobs:
     - job: GenericBuild
       steps:
+      - checkout: NativeAppRepo
       - template: android-build-template.yml
         parameters:
           preBuild:
