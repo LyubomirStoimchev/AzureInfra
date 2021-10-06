@@ -16,7 +16,7 @@ stages:
     jobs:
     - job: GenericBuild
       steps:
-      - checkout: self
+      # - checkout: self
       - checkout: NativeAppRepo
       - template: android-build-template.yml
         parameters:
