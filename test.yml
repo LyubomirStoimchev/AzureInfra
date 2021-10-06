@@ -16,30 +16,9 @@ stages:
     jobs:
     - job: GenericBuild
       steps:
-      # - checkout: self
-      - checkout: NativeAppRepo
       - template: android-build-template.yml
         parameters:
-          preBuild:
-            - task: Bash@3
-              displayName: 'PRE_BUILD_1'
-              inputs:
-                targetType: 'inline'
-                script: |
-                  echo 1
-            - task: Bash@3
-              displayName: 'PRE_BUILD_2'
-              inputs:
-                targetType: 'inline'
-                script: |
-                  echo 2
-          postBuild:
-            - task: Bash@3
-              displayName: 'POST_BUILD_1'
-              inputs:
-                targetType: 'inline'
-                script: |
-                  echo 3
+          AppRepository: NativeAppRepo
 
     - job: GenericArchive
       dependsOn: GenericBuild

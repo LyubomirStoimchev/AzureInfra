@@ -24,6 +24,7 @@ parameters:
 steps:
   - ${{ parameters.preBuild }} # Here we start the prebuild steps
 
+  - checkout: ${{ parameters.AppRepository }}
   - task: Bash@3
     displayName: 'BUILD_BASE_1'
     inputs:
