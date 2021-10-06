@@ -16,7 +16,7 @@ stages:
     jobs:
     - job: GenericBuild
       steps:
-      - checkout: NativeAppRepo
+      - checkout: git@bitbucket.org:draftkingsdevelopers/dk-gaming-app.git
       - template: android-build-template.yml
         parameters:
           preBuild:
