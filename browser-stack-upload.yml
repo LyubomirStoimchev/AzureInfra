@@ -1,65 +1,41 @@
-trigger:
-- main
+parameters:
+  # - name: preBuildSteps
+  #   type: stepList
+  #   default: []
+  # - name: postBuildSteps
+  #   type: stepList
+  #   default: []
+  preBuild: []
+  postBuild: []
+  # - name: AppRepository
+  #   type: object
+  #   default: {}
 
-pool:
-  vmImage: ubuntu-latest
-# resources:
-#   repositories:
-#   - repository: templates
-#     type: github
-#     name: username/repo # Change with the username and git the repository where your common templates are
-#     ref: refs/tags/v1.0.0 # Do not forget to specify the correct tag for your common templates repository
-#     endpoint: EndPointConnection # Update with the end point connection
+jobs:
+- job: UploadApplicationJob
+  displayName: 'UploadApplicationJob'
+  steps:
+    - ${{ parameters.preBuild }} # Here we start the prebuild steps
 
-stages:
-  - stage: Build
-    jobs:
-    - template: android-archive-template.yml
-      parameters:
-        preBuild:
-          - task: Bash@3
-            displayName: 'PRE_BUILD_FROM_UPLOAD_1'
-            inputs:
-              targetType: 'inline'
-              script: |
-                echo 1
-          - task: Bash@3
-            displayName: 'PRE_BUILD_FROM_UPLOAD_2'
-            inputs:
-              targetType: 'inline'
-              script: |
-                echo 2
-        postBuild:
-          - task: Bash@3
-            displayName: 'POST_BUILD_FROM_UPLOAD_1'
-            inputs:
-              targetType: 'inline'
-              script: |
-                echo 3
+    - task: Bash@3
+      displayName: 'Upload 1'
+      inputs:
+        targetType: 'inline'
+        script: |
+          pwd
+          mkdir downloaded2
 
-  - stage : Upload
-    dependsOn: Build
-    jobs:
-    - job:
-      displayName: 'TestUpload'
-      steps:
-        - task: Bash@3
-          displayName: 'Upload 1'
-          inputs:
-            targetType: 'inline'
-            script: |
-              pwd
-              mkdir downloaded2
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        artifact: drop
+        path: $(System.DefaultWorkingDirectory)/downloaded2 # Required 
 
-        - task: DownloadPipelineArtifact@2
-          inputs:
-            artifact: drop
-            path: $(System.DefaultWorkingDirectory)/downloaded2 # Required 
+    - task: Bash@3
+      displayName: 'Upload 2'
+      inputs:
+        targetType: 'inline'
+        script: |
+          ls -la -R
+          cat $(System.DefaultWorkingDirectory)/downloaded2/test.txt
 
-        - task: Bash@3
-          displayName: 'Upload 2'
-          inputs:
-            targetType: 'inline'
-            script: |
-              ls -la -R
-              cat $(System.DefaultWorkingDirectory)/downloaded2/test.txt
+    - ${{ parameters.postBuild }} # Here we start the postbuild steps

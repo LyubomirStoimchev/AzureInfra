@@ -4,8 +4,19 @@
 # https://aka.ms/yaml
 
 parameters:
+  # - name: preBuildSteps
+  #   type: stepList
+  #   default: []
+  # - name: postBuildSteps
+  #   type: stepList
+  #   default: []
   preBuild: []
   postBuild: []
+  AppRepository: {}
+  # - name: AppRepository
+  #   type: object
+  #   default: {}
+    
 
 jobs:
 - job: AndroidBuildProject
@@ -19,6 +30,8 @@ jobs:
         targetType: 'inline'
         script: |
           echo 1
+
+    # - checkout: ${{ parameters.AppRepository }}
 
     - task: Bash@3
       displayName: 'BUILD_BASE_4'

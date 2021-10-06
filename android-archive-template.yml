@@ -10,28 +10,28 @@ parameters:
   postBuild: []
 
 jobs:
-- template: android-build-template.yml
-  parameters:
-    preBuild:
-      - task: Bash@3
-        displayName: 'PRE_BUILD_FROM_ARCHIVE_1'
-        inputs:
-          targetType: 'inline'
-          script: |
-            echo 1
-      - task: Bash@3
-        displayName: 'PRE_BUILD_FROM_ARCHIVE_2'
-        inputs:
-          targetType: 'inline'
-          script: |
-            echo 2
-    postBuild:
-      - task: Bash@3
-        displayName: 'POST_BUILD_FROM_ARCHIVE_1'
-        inputs:
-          targetType: 'inline'
-          script: |
-            echo 3
+# - template: android-build-template.yml
+#   parameters:
+#     preBuild:
+#       - task: Bash@3
+#         displayName: 'PRE_BUILD_FROM_ARCHIVE_1'
+#         inputs:
+#           targetType: 'inline'
+#           script: |
+#             echo 1
+#       - task: Bash@3
+#         displayName: 'PRE_BUILD_FROM_ARCHIVE_2'
+#         inputs:
+#           targetType: 'inline'
+#           script: |
+#             echo 2
+#     postBuild:
+#       - task: Bash@3
+#         displayName: 'POST_BUILD_FROM_ARCHIVE_1'
+#         inputs:
+#           targetType: 'inline'
+#           script: |
+#             echo 3
 
 - job: AndroidArchiveProject
   displayName: 'Android Archive Project'

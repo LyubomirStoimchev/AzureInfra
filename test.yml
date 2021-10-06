@@ -1,0 +1,89 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+# resources:
+#   repositories:
+#   - repository: templates
+#     type: github
+#     name: username/repo # Change with the username and git the repository where your common templates are
+#     ref: refs/tags/v1.0.0 # Do not forget to specify the correct tag for your common templates repository
+#     endpoint: EndPointConnection # Update with the end point connection
+
+stages:
+  - stage: BuildApplication
+    jobs:
+    - template: android-build-template.yml
+      parameters:
+        preBuild:
+          - task: Bash@3
+            displayName: 'PRE_BUILD_1'
+            inputs:
+              targetType: 'inline'
+              script: |
+                echo 1
+          - task: Bash@3
+            displayName: 'PRE_BUILD_2'
+            inputs:
+              targetType: 'inline'
+              script: |
+                echo 2
+        postBuild:
+          - task: Bash@3
+            displayName: 'POST_BUILD_1'
+            inputs:
+              targetType: 'inline'
+              script: |
+                echo 3
+                
+  - stage: ArchiveApplication
+    dependsOn: BuildApplication
+    jobs:
+    - template: android-archive-template.yml
+      parameters:
+        preBuild:
+          - task: Bash@3
+            displayName: 'PRE_UPLOAD_1'
+            inputs:
+              targetType: 'inline'
+              script: |
+                echo 1
+          - task: Bash@3
+            displayName: 'PRE_UPLOAD_2'
+            inputs:
+              targetType: 'inline'
+              script: |
+                echo 2
+        postBuild:
+          - task: Bash@3
+            displayName: 'POST_UPLOAD_1'
+            inputs:
+              targetType: 'inline'
+              script: |
+                echo 3
+
+  - stage : UploadApplication
+    dependsOn: ArchiveApplication
+    jobs:
+    - template: android-archive-template.yml
+      parameters:
+        preBuild:
+          - task: Bash@3
+            displayName: 'PRE_UPLOAD_1'
+            inputs:
+              targetType: 'inline'
+              script: |
+                echo 1
+          - task: Bash@3
+            displayName: 'PRE_UPLOAD_2'
+            inputs:
+              targetType: 'inline'
+              script: |
+                echo 2
+        postBuild:
+          - task: Bash@3
+            displayName: 'POST_UPLOAD_1'
+            inputs:
+              targetType: 'inline'
+              script: |
