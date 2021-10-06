@@ -15,8 +15,8 @@ parameters:
 jobs:
 - job: UploadApplicationJob
   displayName: 'UploadApplicationJob'
-  ${{ if parameters.DependsOn }}:
-    dependsOn: '${{ parameters.DependsOn }}'
+  # ${{ if parameters.DependsOn }}:
+  #   dependsOn: '${{ parameters.DependsOn }}'
   steps:
     - ${{ parameters.preBuild }} # Here we start the prebuild steps
 
