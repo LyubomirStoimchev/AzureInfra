@@ -6,7 +6,7 @@ pool:
 resources:
   repositories:
   - repository: NativeAppRepo
-    type: bitbucket
+    type: git
     endpoint: TestConnectionBB
     name: draftkingsdevelopers/dk-gaming-app
     ref: develop
