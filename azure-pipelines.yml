@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  testVar: "123"
+
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
@@ -17,6 +20,8 @@ steps:
   inputs:
     command: 'test'
     projects: '**/*.csproj'
+  env:
+    SOME_VAR: $(testVar)
 
 - task: Bash@3
   displayName: 'test'

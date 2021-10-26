@@ -15,32 +15,39 @@ namespace SomeTests
         [Test]
         public void Test1()
         {
+            //Environment.GetEnvironmentVariable("Build_BuildNumber", EnvironmentVariableTarget.Process);
+
+            foreach (var variable in Environment.GetEnvironmentVariables(EnvironmentVariableTarget.Process))
+            {
+                Console.WriteLine(variable);
+            }
+
             Assert.Pass();
         }
 
-        [Test]
-        public void Test2()
-        {
-            Assert.Fail();
-        }
+        // [Test]
+        // public void Test2()
+        // {
+        //     Assert.Fail();
+        // }
 
-        [Test]
-        public void Test3()
-        {
-            Console.WriteLine("test1");
-            Console.WriteLine("test2");
+        // [Test]
+        // public void Test3()
+        // {
+        //     Console.WriteLine("test1");
+        //     Console.WriteLine("test2");
             
-            Assert.Pass();
-        }
+        //     Assert.Pass();
+        // }
 
-        [Test]
-        public void Test4()
-        {
-            Console.WriteLine("test1");
-            Console.WriteLine("test2");
+        // [Test]
+        // public void Test4()
+        // {
+        //     Console.WriteLine("test1");
+        //     Console.WriteLine("test2");
 
-            Assert.Fail();
-        }
+        //     Assert.Fail();
+        // }
 
        // [Test]
         //public void Test5()
