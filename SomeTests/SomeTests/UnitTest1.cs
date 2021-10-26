@@ -22,7 +22,7 @@ namespace SomeTests
                 Console.WriteLine(variable);
             }
 
-            Assert.Pass();
+            Assert.Fail();
         }
 
         // [Test]
