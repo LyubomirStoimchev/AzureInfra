@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Drawing;
 using System.Reflection;
 using NUnit.Framework;
@@ -17,9 +18,9 @@ namespace SomeTests
         {
             //Environment.GetEnvironmentVariable("Build_BuildNumber", EnvironmentVariableTarget.Process);
 
-            foreach (var variable in Environment.GetEnvironmentVariables(EnvironmentVariableTarget.Process))
+            foreach (DictionaryEntry variable in Environment.GetEnvironmentVariables(EnvironmentVariableTarget.Process))
             {
-                Console.WriteLine(variable);
+                Console.WriteLine($"{variable.Key}:{variable.Key.ToString()}");
             }
 
             Assert.Fail();
