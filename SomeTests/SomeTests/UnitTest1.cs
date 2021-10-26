@@ -20,7 +20,7 @@ namespace SomeTests
 
             foreach (DictionaryEntry variable in Environment.GetEnvironmentVariables(EnvironmentVariableTarget.Process))
             {
-                Console.WriteLine($"{variable.Key}:{variable.Key.ToString()}");
+                Console.WriteLine($"{variable.Key}:{variable.Value.ToString()}");
             }
 
             Assert.Fail();
